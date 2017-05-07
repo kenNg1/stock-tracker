@@ -33,7 +33,7 @@ class UserStocksController < ApplicationController
       else
         stock = Stock.new_from_lookup(params[:stock_ticker])
         if stock.save
-          @user_stock = UserStock.new(user:current_user, stock: stock)
+          @user_stock = UserStock.new(user: current_user, stock: stock)
         else
           @user_stock = nil
           flash[:error] = "Stock is not available"
@@ -79,7 +79,9 @@ class UserStocksController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user_stock
-      @user_stock = UserStock.find(params[:id])
+      # the below line wouldn't work and don't know why!
+      # @user_stock = UserStock.find(params[:id])
+      @user_stock = current_user.stocks.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
