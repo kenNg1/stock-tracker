@@ -4,7 +4,7 @@
   <%= form_tag search_friends_path, remote: true, method: :get, id:'friend-lookup-form' do %>
   <div class="form-group row no-padding text-center col-md-12">
     <div class="col-md-10">
-      <%= text_field_tag :searc_param, params[:search_param],
+      <%= text_field_tag :search_param, params[:search_param],
                                       placeholder: "first name, last name or email", autofocus: true,
                                       class: 'form-control search-box input-lg' %>
     </div>
@@ -29,10 +29,10 @@
                 <td><strong>Email:</strong> <%= user.email %></td>
                 <td><strong>Profile:</strong>
                   <%= link_to "View Profile", user_path(user),
-                                                  class: "btn btn-xs btn-success" %>
+                                                  class: "btn btn-xs btn-primary" %>
                   <% if current_user.not_friends_with?(user.id) %>
                   <%= link_to "Add as my friend", add_friend_path(user: current_user, friend: user),
-                                                  class: "btn btn-xs-btn-success", method: :post %>
+                                                  class: "btn btn-xs btn-success", method: :post %>
                   <% else %>
                     <span class="label label-primary">You are friends</span>
                   <% end %>
