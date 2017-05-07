@@ -8,14 +8,14 @@ init_stock_lookup = function() {
     hide_spinner();
   });
   $('#stock-lookup-form').on('ajax:success', function(event, data, status){
-    $('#stock-lookup').replaceWith(data);
+    $('#stock-lookup').html(data);
     init_stock_lookup();
   });
 
   $('#stock-lookup-form').on('ajax:error', function(event, xhr, status, error){
     hide_spinner();
-    $('#stock-lookup-results').replaceWith(' ');
-    $('#stock-lookup-errors').replaceWith('Stock was not found');
+    $('#stock-lookup-results').html(' ');
+    $('#stock-lookup-errors').html('Stock was not found');
   });
 };
 
